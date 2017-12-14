@@ -29,16 +29,8 @@ func main() {
 	mess.AccessToken = os.Getenv("TOKEN")
 	log.Println("Bot start in token:", mess.VerifyToken)
 	mess.MessageReceived = MessageReceived
-	
-	mockData := &result{
-		Result: "Successfully added new_thread's CTAs",
-	}
 
-	body, err := json.Marshal(mockData)
-	if err != nil {
-		fmt.Println(err)
-	}
-	resp, err := mess.SetWelcomeMessage(&SendMessage{
+	err := mess.SetWelcomeMessage(&SendMessage{
 		Text: "hello!",
 	})
 	if err != nil {
