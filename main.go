@@ -44,5 +44,11 @@ func MessageReceived(event Event, opts MessageOpts, msg ReceivedMessage) {
 	if err != nil {
 		fmt.Println(err)
 	}
+	
+	resp, err := mess.SetWelcomeMessage(fmt.Sprintf("Hello   , %s %s, %s", profile.FirstName, profile.LastName, msg.Text))
+	if err != nil {
+		fmt.Println(err)
+	}
+	
 	fmt.Printf("%+v", resp)
 }
