@@ -38,11 +38,11 @@ func main() {
 //MessageReceived :Callback to handle when message received.
 func MessageReceived(event Event, opts MessageOpts, msg ReceivedMessage) {
 	// log.Println("event:", event, " opt:", opts, " msg:", msg)
-	//profile, err := mess.GetProfile(opts.Sender.ID)
-	//if err != nil {
-	//	fmt.Println(err)
-	//	return
-	//}
+	profile, err := mess.GetProfile(opts.Sender.ID)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 	answers := []string{"洞么參在此誰敢放肆","就跟你說要有外野了",
 						    "洞么參剛到步校","打手槍次數是零",
 						    "欸幹嘛不要這樣啊","都欺負我","欸我不是二分隊的啊",
@@ -53,6 +53,12 @@ func MessageReceived(event Event, opts MessageOpts, msg ReceivedMessage) {
 	if strings.Contains(msg.Text, "哈哈哈"){
 		var txt =answers[rand.Intn(len(answers))] 
 		resp, err := mess.SendSimpleMessage(opts.Sender.ID, fmt.Sprintf("%s", txt))
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Printf("%+v", resp)
+	}else{
+		resp, err := mess.SendSimpleMessage(opts.Sender.ID, fmt.Sprintf("Hello , %s %s, 我是哈司令", profile.FirstName, profile.LastName))
 		if err != nil {
 			fmt.Println(err)
 		}
