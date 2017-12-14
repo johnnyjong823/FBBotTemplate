@@ -29,7 +29,9 @@ func main() {
 	log.Println("Bot start in token:", mess.VerifyToken)
 	mess.MessageReceived = MessageReceived
 	
-	resp, err := mess.SetWelcomeMessage(SendMessage{Text: msg.Text})
+	var o SendMessage
+	o.Text="1"
+	resp, err := mess.SetWelcomeMessage(o)
 	
 	http.HandleFunc("/webhook", mess.Handler)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
