@@ -33,7 +33,7 @@ func main() {
 		Text: "hello!",
 	})
 	if err != nil {
-		t.Error(err)
+		fmt.Error(err)
 	}
 	
 	http.HandleFunc("/webhook", mess.Handler)
