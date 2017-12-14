@@ -28,6 +28,9 @@ func main() {
 	mess.AccessToken = os.Getenv("TOKEN")
 	log.Println("Bot start in token:", mess.VerifyToken)
 	mess.MessageReceived = MessageReceived
+	
+	resp, err := mess.SetWelcomeMessage(SendMessage{Text: msg.Text})
+	
 	http.HandleFunc("/webhook", mess.Handler)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
@@ -45,10 +48,7 @@ func MessageReceived(event Event, opts MessageOpts, msg ReceivedMessage) {
 		fmt.Println(err)
 	}
 	
-	resp, err := mess.SetWelcomeMessage(fmt.Sprintf("Hello   , %s %s, %s", profile.FirstName, profile.LastName, msg.Text))
-	if err != nil {
-		fmt.Println(err)
-	}
+	resp, err := mess.SetWelcomeMessage(SendMessage{Text: msg.Text})
 	
 	fmt.Printf("%+v", resp)
 }
