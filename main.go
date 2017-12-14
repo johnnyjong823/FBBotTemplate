@@ -29,7 +29,7 @@ func main() {
 	log.Println("Bot start in token:", mess.VerifyToken)
 	mess.MessageReceived = MessageReceived
 	
-	err = messenger.SetWelcomeMessage(&SendMessage{
+	err = mess.SetWelcomeMessage(&SendMessage{
 		Text: "hello!",
 	})
 	if err != nil {
