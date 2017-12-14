@@ -56,10 +56,6 @@ func MessageReceived(event Event, opts MessageOpts, msg ReceivedMessage) {
 		if err != nil {
 			fmt.Println(err)
 		}
-	}
-	
-	
-	//resp, err := mess.SetWelcomeMessage(SendMessage{Text: msg.Text})
-	
-	fmt.Printf("%+v", resp)
+		fmt.Printf("%+v", resp)
+	}	
 }
