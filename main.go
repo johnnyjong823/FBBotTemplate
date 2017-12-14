@@ -17,6 +17,8 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
+	"math/rand"
 )
 
 var mess = &Messenger{}
